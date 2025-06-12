@@ -23,11 +23,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self. roll = False
         self.turn = True
         self.backwards = False
+        self.roll_values = [1] #all previos rolls added up to calculate the spot it shoudl be on. 1 is initial spot its on.
         #-----------------------------DEBUG---------------------------------
         self.debug_roll = False
         
 
-        
+        # 30, 500 is default position
     
     
     def start(self):
@@ -60,16 +61,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.timer.start(50)
             elif self.roll == False:
                 self.timer.stop()
+                print(self.move)
+                self.roll_values.append(self.move)
                 if self.debug_roll == True:
                     print(f"You Got {self.move}")
-                if self.lbl_player.x() >= 795:
+                if self.roll_values >= 10 and self.lbl_player.y == 500:
+                    #self.backwards = not self.backwards
                     move_y += 90
-                    move_x += 200
-                    move_x = int(self.move) * -85 
-                move_x = int(self.move) * 85
-                move_y = 0
-       
-                self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+                    
+                    #move_x += 200
+                    #move_x = int(self.move) * -85 
+                self.move()
             else:
                 print("ERROR in self.roll (boolean)")
                 
@@ -79,7 +81,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             print("ERROR in self.turn")
             
         
-    
+    def move(self):
+        move_x = int(self.move) * 85
+       
+        self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+        
+        
     def do_stuff(self):
         self.move = random.randint(1,6)
         self.lbl_dice_show.setText(str(self.move))
@@ -89,6 +96,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def btn_return_a(self):
         manager.widget.setCurrentWidget(manager.screen1)
+        
         
     def debug(self):  #------------------------DEBUG-----------------------------
         request = input("Command: ")
