@@ -23,7 +23,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self. roll = False
         self.turn = True
         self.backwards = False
-        self.roll_values = [1] #all previos rolls added up to calculate the spot it shoudl be on. 1 is initial spot its on.
+        self.roll_values = 1 #all previos rolls added up to calculate the spot it shoudl be on. 1 is initial spot its on.
         #-----------------------------DEBUG---------------------------------
         self.debug_roll = False
         
@@ -62,16 +62,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             elif self.roll == False:
                 self.timer.stop()
                 print(self.move)
-                self.roll_values.append(self.move)
+                self.roll_values += self.move
                 if self.debug_roll == True:
                     print(f"You Got {self.move}")
                 if self.roll_values >= 10 and self.lbl_player.y == 500:
                     #self.backwards = not self.backwards
-                    move_y += 90
+                    self.lbl_player.move(800, 585)
                     
                     #move_x += 200
                     #move_x = int(self.move) * -85 
-                self.move()
+                self.move_piece()
             else:
                 print("ERROR in self.roll (boolean)")
                 
@@ -81,10 +81,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             print("ERROR in self.turn")
             
         
-    def move(self):
-        move_x = int(self.move) * 85
-       
-        self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+    def move_piece(self):
+        if self.backwards == True:
+            move_x = int(self.move) * -85
+            move_y +=0
+            self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+        elif self.backwards == False:
+            move_x = int(self.move) * 85
+            move_y +=0
+            self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
         
         
     def do_stuff(self):
