@@ -76,7 +76,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         elif self.turn == False:
             pass # AI TURN
         else:
-            print("ERROR in self.turn")
+            print("ERRORS in self.turn")
             
         
     
