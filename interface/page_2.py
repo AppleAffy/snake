@@ -77,26 +77,31 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     print(f"You Got {self.move}")
                 if self.roll_values > 10 and self.lbl_player.y() == 500:
                     self.moving_up = True
-                    print("CHECKING")
                     self.lbl_player.move(800, 450)
                     self.backwards = True
                     move_x = int(self.roll_values - 11) * -85
                     move_y = 0
                     self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
                     self.moving_up = True
-                if self.roll_values > 20 and self.lbl_player.y() == 450:
+                elif self.roll_values > 20 and self.lbl_player.y() == 450:
                     self.moving_up = True
-                    print("CHECKING2")
                     self.lbl_player.move(30, 400)
                     self.backwards = False
                     move_x = int(self.roll_values - 21) * 85
                     move_y = 0
                     self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
                     self.moving_up = True
+                elif self.roll_values > 30 and self.lbl_player.y() == 400:
+                    self.moving_up = True
+                    self.lbl_player.move(30, 320)
+                    self.backwards = False
+                    move_x = int(self.roll_values - 21) * -85
+                    move_y = 0
+                    self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+                    self.moving_up = True
                 if self.moving_up == False:
                     self.move_piece()
-            else:
-                print("ERROR in self.roll (boolean)")
+            
                 
         elif self.turn == False:
             pass # AI TURN
