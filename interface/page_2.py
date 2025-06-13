@@ -62,6 +62,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.moving_up = False
         
     def line_move(self):
+        if self.roll_values == 65:
+            self.lbl_player.move(540, 335)
+            self.roll_values = 34
+        if self.roll_values == 3 and self.lbl_player.y() == 500:
+            self.lbl_player.move(200,170)
+            self.roll_values = 78
         if self.roll_values > 10 and self.lbl_player.y() == 500:
             self.moving_up = True
             self.lbl_player.move(800, 445)
@@ -186,11 +192,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def debug(self):  #------------------------DEBUG-----------------------------
         request = input("Command: ")
         if request == "position":
+            self.roll_values = int(input("roll_values(one number): "))
+            temp_x = int(input("X: "))
+            temp_y = int(input("Y: "))
+            self.lbl_player.move(temp_x, temp_y)
+        elif request == "pos?":
             print(f"lbl_player position is ({self.lbl_player.x()},{self.lbl_player.y()}) ")
         elif request == "debug_roll":
             self.debug_roll = not self.debug_roll
             print(f"debug_roll is {self.debug_roll}")
         elif request == "help":
-            print("List of Commands:\n position - provides self.lbl_player x location vlaue\n debug_roll - toggle show dice rolls and output of roll")
+            print("List of Commands:\n pos? - provides self.lbl_player x and y location values\n debug_roll - toggle show dice rolls and output of roll\n position - lets you set the position of the piece")
         else:
             print("THAT IS NOT A VALID COMMAND: TYPE 'help' TO SEE LIST OF COMMANDS")

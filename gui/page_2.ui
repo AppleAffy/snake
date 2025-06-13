@@ -109,6 +109,58 @@
      <string>RESET</string>
     </property>
    </widget>
+   <widget class="QLabel" name="lbl_snake">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>170</y>
+      <width>261</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>C:/Users/potat/Downloads/snake-removebg-preview.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_ladder">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>160</y>
+      <width>191</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>C:/Users/potat/Downloads/ladder-removebg-preview.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <zorder>lbl_board</zorder>
+   <zorder>btn_return</zorder>
+   <zorder>btn_dice</zorder>
+   <zorder>lbl_dice_show</zorder>
+   <zorder>btn_reset</zorder>
+   <zorder>lbl_player</zorder>
+   <zorder>lbl_snake</zorder>
+   <zorder>lbl_ladder</zorder>
   </widget>
  </widget>
  <resources/>
