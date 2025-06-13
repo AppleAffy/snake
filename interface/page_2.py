@@ -61,7 +61,79 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.backwards = False
         self.moving_up = False
         
-        
+    def line_move(self):
+        if self.roll_values > 10 and self.lbl_player.y() == 500:
+            self.moving_up = True
+            self.lbl_player.move(800, 445)
+            self.backwards = True
+            move_x = int(self.roll_values - 11) * -85
+            move_y = 0
+            self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+            self.moving_up = True
+        elif self.roll_values > 20 and self.lbl_player.y() == 445:
+            self.moving_up = True
+            self.lbl_player.move(30, 390)
+            self.backwards = False
+            move_x = int(self.roll_values - 21) * 85
+            move_y = 0
+            self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+            self.moving_up = True
+        elif self.roll_values > 30 and self.lbl_player.y() == 390:
+            self.moving_up = True
+            self.lbl_player.move(800, 335)
+            self.backwards = True
+            move_x = int(self.roll_values - 31) * -85
+            move_y = 0
+            self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+            self.moving_up = True
+        elif self.roll_values > 40 and self.lbl_player.y() == 335:
+            self.moving_up = True
+            self.lbl_player.move(30, 280)
+            self.backwards = False
+            move_x = int(self.roll_values - 41) * 85
+            move_y = 0
+            self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+            self.moving_up = True 
+        elif self.roll_values > 50 and self.lbl_player.y() == 280:
+            self.moving_up = True
+            self.lbl_player.move(800, 225)
+            self.backwards = True
+            move_x = int(self.roll_values - 51) * -85
+            move_y = 0
+            self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+            self.moving_up = True
+        elif self.roll_values > 60 and self.lbl_player.y() == 225:
+            self.moving_up = True
+            self.lbl_player.move(30, 170)
+            self.backwards = False
+            move_x = int(self.roll_values - 61) * 85
+            move_y = 0
+            self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+            self.moving_up = True
+        elif self.roll_values > 70 and self.lbl_player.y() == 170:
+            self.moving_up = True
+            self.lbl_player.move(800, 115)
+            self.backwards = True
+            move_x = int(self.roll_values - 71) * -85
+            move_y = 0
+            self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+            self.moving_up = True
+        elif self.roll_values > 80 and self.lbl_player.y() == 115:
+            self.moving_up = True
+            self.lbl_player.move(30, 60)
+            self.backwards = False
+            move_x = int(self.roll_values - 81) * 85
+            move_y = 0
+            self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+            self.moving_up = True
+        elif self.roll_values > 90 and self.lbl_player.y() == 60:
+            self.moving_up = True
+            self.lbl_player.move(800, 5)
+            self.backwards = True
+            move_x = int(self.roll_values - 91) * -85
+            move_y = 0
+            self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+            self.moving_up = True      
     def btn_dice_a(self): 
         self.moving_up = False
         if self.turn:
@@ -75,30 +147,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 print(f"roll value = {self.roll_values}")
                 if self.debug_roll == True:
                     print(f"You Got {self.move}")
-                if self.roll_values > 10 and self.lbl_player.y() == 500:
-                    self.moving_up = True
-                    self.lbl_player.move(800, 450)
-                    self.backwards = True
-                    move_x = int(self.roll_values - 11) * -85
-                    move_y = 0
-                    self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
-                    self.moving_up = True
-                elif self.roll_values > 20 and self.lbl_player.y() == 450:
-                    self.moving_up = True
-                    self.lbl_player.move(30, 400)
-                    self.backwards = False
-                    move_x = int(self.roll_values - 21) * 85
-                    move_y = 0
-                    self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
-                    self.moving_up = True
-                elif self.roll_values > 30 and self.lbl_player.y() == 400:
-                    self.moving_up = True
-                    self.lbl_player.move(30, 320)
-                    self.backwards = False
-                    move_x = int(self.roll_values - 21) * -85
-                    move_y = 0
-                    self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
-                    self.moving_up = True
+                self.line_move()
                 if self.moving_up == False:
                     self.move_piece()
             
