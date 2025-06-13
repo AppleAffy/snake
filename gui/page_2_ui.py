@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'page_2.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.2
+## Created by: Qt User Interface Compiler version 6.9.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -47,11 +47,15 @@ class Ui_MainWindow(object):
         font = QFont()
         font.setPointSize(15)
         self.lbl_dice_show.setFont(font)
+        self.btn_reset = QPushButton(self.centralwidget)
+        self.btn_reset.setObjectName(u"btn_reset")
+        self.btn_reset.setGeometry(QRect(704, 570, 91, 41))
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
         self.btn_return.clicked.connect(MainWindow.btn_return_a)
         self.btn_dice.clicked.connect(MainWindow.btn_dice_a)
+        self.btn_reset.clicked.connect(MainWindow.btn_reset_a)
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
@@ -63,5 +67,6 @@ class Ui_MainWindow(object):
         self.lbl_player.setText("")
         self.btn_dice.setText("")
         self.lbl_dice_show.setText("")
+        self.btn_reset.setText(QCoreApplication.translate("MainWindow", u"RESET", None))
     # retranslateUi
 

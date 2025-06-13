@@ -20,15 +20,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setStyleSheet("background-color: rgb(255, 255, 255)")
         self.timer=QTimer()
         self.timer.timeout.connect(self.do_stuff)
-        self. roll = False
-        self.turn = True
-        self.backwards = False
+        self. roll = False # rolling function of dice
+        self.turn = True #decided [player turn vs AI turn]
+        self.backwards = False #move backwards after going up a level
         self.roll_values = 1 #all previos rolls added up to calculate the spot it shoudl be on. 1 is initial spot its on.
+        self.moving_up = False
         #-----------------------------DEBUG---------------------------------
         self.debug_roll = False
         
 
-        # 30, 500 is default position
+        
     
     
     def start(self):
@@ -53,8 +54,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         except:
             self.lbl_player.setPixmap(QPixmap("images/pieces_red.png"))
         #---------------------------------------------------------------------
-            
+    
+    def btn_reset_a(self):
+        self.lbl_player.move(30,500) # 30, 500 is default position
+        self.roll_values = 1
+        self.backwards = False
+        self.moving_up = False
+        
+        
     def btn_dice_a(self): 
+        self.moving_up = False
         if self.turn:
             self.roll = not self.roll # toggle boolean value
             if self.roll == True:
@@ -63,15 +72,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.timer.stop()
                 print(self.move)
                 self.roll_values += self.move
+                print(f"roll value = {self.roll_values}")
                 if self.debug_roll == True:
                     print(f"You Got {self.move}")
-                if self.roll_values >= 10 and self.lbl_player.y == 500:
-                    #self.backwards = not self.backwards
-                    self.lbl_player.move(800, 585)
-                    
-                    #move_x += 200
-                    #move_x = int(self.move) * -85 
-                self.move_piece()
+                if self.roll_values > 10 and self.lbl_player.y() == 500:
+                    self.moving_up = True
+                    print("CHECKING")
+                    self.lbl_player.move(800, 450)
+                    self.backwards = True
+                    move_x = int(self.roll_values - 11) * -85
+                    move_y = 0
+                    self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+                    self.moving_up = True
+                if self.roll_values > 20 and self.lbl_player.y() == 450:
+                    self.moving_up = True
+                    print("CHECKING2")
+                    self.lbl_player.move(30, 400)
+                    self.backwards = False
+                    move_x = int(self.roll_values - 21) * 85
+                    move_y = 0
+                    self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
+                    self.moving_up = True
+                if self.moving_up == False:
+                    self.move_piece()
             else:
                 print("ERROR in self.roll (boolean)")
                 
@@ -81,14 +104,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             print("ERROR in self.turn")
             
         
-    def move_piece(self):
+    def move_piece(self,):
         if self.backwards == True:
+            print("False")
+            print("MOVING BACKWARDS") # checking
             move_x = int(self.move) * -85
-            move_y +=0
+            move_y = 0
             self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
         elif self.backwards == False:
+            print("MOVING FORWARDS")
             move_x = int(self.move) * 85
-            move_y +=0
+            move_y = 0
             self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
         
         

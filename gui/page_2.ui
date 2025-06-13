@@ -96,6 +96,19 @@
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="btn_reset">
+    <property name="geometry">
+     <rect>
+      <x>704</x>
+      <y>570</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RESET</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
@@ -132,9 +145,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>btn_reset</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>btn_reset_a()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>738</x>
+     <y>576</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>611</x>
+     <y>584</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>btn_return_a()</slot>
   <slot>btn_dice_a()</slot>
+  <slot>btn_reset_a()</slot>
  </slots>
 </ui>
