@@ -148,10 +148,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.timer.start(50)
             elif self.roll == False:
                 self.timer.stop()
-                print(self.move)
-                self.roll_values += self.move
-                print(f"roll value = {self.roll_values}")
                 if self.debug_roll == True:
+                    print(self.move)
+                self.roll_values += self.move
+                if self.debug_roll == True:
+                    print(f"roll value = {self.roll_values}")
                     print(f"You Got {self.move}")
                 self.line_move()
                 if self.moving_up == False:
@@ -166,13 +167,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
     def move_piece(self,):
         if self.backwards == True:
-            print("False")
-            print("MOVING BACKWARDS") # checking
+            if self.debug_roll == True:
+                print("False")
+                print("MOVING BACKWARDS") # checking
             move_x = int(self.move) * -85
             move_y = 0
             self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
         elif self.backwards == False:
-            print("MOVING FORWARDS")
+            if self.debug_roll == True:
+                print("MOVING FORWARDS")
             move_x = int(self.move) * 85
             move_y = 0
             self.lbl_player.move(self.lbl_player.x()+move_x,self.lbl_player.y()+move_y)
@@ -198,10 +201,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.lbl_player.move(temp_x, temp_y)
         elif request == "pos?":
             print(f"lbl_player position is ({self.lbl_player.x()},{self.lbl_player.y()}) ")
-        elif request == "debug_roll":
+        elif request == "debug":
             self.debug_roll = not self.debug_roll
             print(f"debug_roll is {self.debug_roll}")
         elif request == "help":
-            print("List of Commands:\n pos? - provides self.lbl_player x and y location values\n debug_roll - toggle show dice rolls and output of roll\n position - lets you set the position of the piece")
+            print("List of Commands:\n pos? - provides self.lbl_player x and y location values\n debug_roll - toggle show dice rolls and output of roll as well as other debug info\n position - lets you set the position of the piece")
         else:
             print("THAT IS NOT A VALID COMMAND: TYPE 'help' TO SEE LIST OF COMMANDS")
